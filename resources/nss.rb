@@ -54,8 +54,8 @@ action :setup do
   bash "append_to_config" do
     user "root"
     code <<-EOF
-      echo "AuthorizedKeysCommand /usr/bin/gate_ssh.sh" >> /etc/ssh/sshd_config
-      echo "AuthorizedKeysCommandUser nobody" >> /etc/ssh/sshd_config
+      echo "\nAuthorizedKeysCommand /usr/bin/gate_ssh.sh" >> /etc/ssh/sshd_config
+      echo "\nAuthorizedKeysCommandUser nobody" >> /etc/ssh/sshd_config
     EOF
     not_if "grep -q gate_ssh.sh /etc/ssh/sshd_config"
   end
