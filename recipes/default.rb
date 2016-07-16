@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-cookbook_file '/lib/xx86_64*/libnss_http.so.2.0' do
-  source 'libnss_http.so.2.0'
+cookbook_file '/lib/x86_64*/libnss_http.so.2.0' do
+  source node['gate']['nss']['binary_source']
   owner 'root'
   group 'root'
   mode '0755'
@@ -42,5 +42,5 @@ bash "append_to_config" do
       echo "AuthorizedKeysCommand /usr/bin/gate_ssh.sh" >> /etc/ssh/sshd_config
       echo "AuthorizedKeysCommandUser nobody" >> /etc/ssh/sshd_config
    EOF
-   not_if "grep -q AuthorizedKeysCommand /etc/ssh/sshd_config"
+   not_if "grep -q gate_ssh.sh /etc/ssh/sshd_config"
  end
