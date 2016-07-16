@@ -12,7 +12,7 @@ action :setup do
     binary_source = "libnss_http.so.2.0_1604"
   end
 
-  cookbook_file '/lib/x86_64*/libnss_http.so.2.0' do
+  cookbook_file '/lib/x86_64-linux-gnu//libnss_http.so.2.0' do
     source binary_source
     owner 'root'
     group 'root'
