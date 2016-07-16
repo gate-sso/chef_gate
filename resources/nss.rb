@@ -58,6 +58,12 @@ action :setup do
       echo "\nAuthorizedKeysCommandUser nobody" >> /etc/ssh/sshd_config
     EOF
     not_if "grep -q gate_ssh.sh /etc/ssh/sshd_config"
+    notifies :restart, 'service[ssh]', :delayed
+  end
+
+  service 'ssh' do
+    action :nothing
+    supports :status => true, :start => true, :stop => true, :restart => true
   end
 
 end
