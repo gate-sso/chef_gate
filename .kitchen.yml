@@ -9,8 +9,13 @@ platforms:
   - name: ubuntu/trusty64
 
 suites:
-  - name: default
+  - name: pam
     run_list:
       - recipe[test-helper]
-      - recipe[gate_test]
+      - recipe[gate_test::pam]
+    attributes:
+  - name: ssh
+    run_list:
+      - recipe[test-helper]
+      - recipe[gate_test::ssh]
     attributes:
