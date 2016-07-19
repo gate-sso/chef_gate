@@ -6,6 +6,8 @@ default_action :setup
 
 action :setup do
 
+  package ['libcurl4-openssl-dev', 'libjansson-dev', 'libyaml-dev']
+
   if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
     binary_source = "libnss_http.so.2.0_1404"
   elsif node['platform'] == 'ubuntu' && node['platform_version'] == '16.04'
@@ -40,4 +42,23 @@ action :setup do
     )
   end
 
+  template '/etc/nsswitch.conf' do
+    source 'nsswitch.conf.erb'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    cookbook 'chef_gate'
+  end
+
+  link '/lib/x86_64-linux-gnu/libnss_http.so' do
+      to '/lib/x86_64-linux-gnu/libnss_http.so'
+      owner 'root'
+      group 'root'
+  end
+
+  link '/lib/x86_64-linux-gnu/libnss_http.so.2' do
+      to '/lib/x86_64-linux-gnu/libnss_http.so'
+      owner 'root'
+      group 'root'
+  end
 end
