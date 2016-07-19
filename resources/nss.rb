@@ -51,13 +51,13 @@ action :setup do
   end
 
   link '/lib/x86_64-linux-gnu/libnss_http.so' do
-      to '/lib/x86_64-linux-gnu/libnss_http.so'
+      to '/lib/x86_64-linux-gnu/libnss_http.so.2.0'
       owner 'root'
       group 'root'
   end
 
   link '/lib/x86_64-linux-gnu/libnss_http.so.2' do
-      to '/lib/x86_64-linux-gnu/libnss_http.so'
+      to '/lib/x86_64-linux-gnu/libnss_http.so.2.0'
       owner 'root'
       group 'root'
   end
