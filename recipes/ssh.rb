@@ -6,3 +6,7 @@ end
 chef_gate_ssh 'ssh setup' do
   gate_url node['gate']['url']
 end
+
+chef_gate_pam 'ssh setup' do
+  gate_url node['gate']['url']
+end

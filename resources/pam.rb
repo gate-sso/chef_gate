@@ -23,10 +23,19 @@ action :setup do
   bash "append_to_config" do
     user "root"
     code <<-EOF
-      echo "\nauth\tsufficient\tpam_gate.so\turl=#{gate_url}/profile/authenticate_pam" >> /etc/pam.d/common-auth
-      echo "account\tsufficient\tpam_gate.so" >> /etc/pam.d/common-auth
+      echo "\naccount\tsufficient\tpam_gate.so\turl=#{gate_url}/profile/authenticate_pam" >> /etc/pam.d/common-auth
     EOF
     not_if "grep -q pam_gate.so /etc/pam.d/common-auth"
+    notifies :restart, 'service[ssh]', :delayed
+  end
+
+  bash "append_to_pam_sshd" do
+    user "root"
+    code <<-EOF
+      echo "#create home directory" >> /etc/pam.d/sshd
+      echo "session required pam_mkhomedir.so skel=/etc/skel/ umask=0022" >> /etc/pam.d/sshd
+    EOF
+    not_if "grep -q pam_mkhomedir.so /etc/pam.d/sshd"
     notifies :restart, 'service[ssh]', :delayed
   end
 
