@@ -9,4 +9,11 @@ end
 
 chef_gate_pam 'ssh setup' do
   gate_url node['gate']['url']
+  api_key node['gate']['nss']['api_key']
 end
+
+group 'devops' do
+  action :create
+end
+
+include_recipe 'sudo'
