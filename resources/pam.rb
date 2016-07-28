@@ -24,7 +24,7 @@ action :setup do
   bash "append_to_config" do
     user "root"
     code <<-EOF
-      echo "\naccount\tsufficient\tpam_gate.so\turl=#{gate_url}/profile/verify token=#{api_key}" >> /etc/pam.d/common-auth
+      echo "\naccount\tsufficient\tpam_gate.so\turl=https://#{gate_url}/profile/verify token=#{api_key}" >> /etc/pam.d/common-auth
     EOF
     not_if "grep -q pam_gate.so /etc/pam.d/common-auth"
     notifies :restart, 'service[ssh]', :delayed
