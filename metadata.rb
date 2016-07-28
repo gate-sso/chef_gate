@@ -5,3 +5,6 @@ license          'All rights reserved'
 description      'Installs/Configures gate-sso'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.8'
+
+depends 'apt'
+depends 'sudo'
