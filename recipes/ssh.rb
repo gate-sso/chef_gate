@@ -27,6 +27,15 @@ cookbook_file "/etc/nsswitch.conf.orig" do
   mode  "0644"
 end
 
+
 if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
-  Chef::Util::FileEdit.new('/usr/bin/chef-client').insert_line_after_match(/embedded/, "require 'fileutils'\nFileUtils.cp '/etc/nsswitch.conf.orig', '/etc/nsswitch.conf'")
+  ruby_block 'change chef client binary' do
+    block do
+      file = Chef::Util::FileEdit.new("/usr/bin/chef-client")
+      file.insert_line_after_match(/.*embedded.*$/, "require 'fileutils'\nFileUtils.cp '/etc/nsswitch.conf.orig', '/etc/nsswitch.conf'")
+      file.write_file
+    end
+    action :run
+    not_if 'cat /usr/bin/chef-client | grep nsswitch.conf.orig'
+  end
 end
