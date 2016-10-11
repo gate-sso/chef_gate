@@ -4,8 +4,6 @@ group 'devops' do
   action :create
 end
 
-include_recipe 'sudo'
-
 chef_gate_nss 'nss setup' do
   gate_url node['gate']['url']
   api_key node['gate']['nss']['api_key']
@@ -39,3 +37,6 @@ if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
     not_if 'cat /usr/bin/chef-client | grep nsswitch.conf.orig'
   end
 end
+
+include_recipe "chef_gate::_add_host_gate"
+include_recipe "chef_gate::_add_sudo_group"
