@@ -10,7 +10,9 @@ res = Net::HTTP.get_response(uri)
 response_hash = JSON.parse(res.body)
 
 if !response_hash.empty?
-  node.override['authorization']['sudo']['groups'] = (response_hash['groups'] + node['authorization']['sudo']['groups']).uniq
+  node.override['authorization']['sudo']['groups'] = (response_hash['groups'] + node['sudo_groups']).uniq
+else
+  node.override['authorization']['sudo']['groups'] = node['sudo_groups']
 end
 
 include_recipe 'sudo'
