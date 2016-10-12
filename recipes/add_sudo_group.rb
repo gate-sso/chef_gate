@@ -2,7 +2,7 @@ require 'net/http'
 require 'socket'
 require 'json'
 
-uri = URI("https://#{node['gate']['public_url']}/nss/host")
+uri = URI("https://#{node['gate']['url']}/nss/host")
 params = { :name => "#{node['hostname']}", :token => "#{node['gate']['nss']['api_key']}" }
 uri.query = URI.encode_www_form(params)
 res = Net::HTTP.get_response(uri)
