@@ -34,6 +34,3 @@ ruby_block 'change chef client binary' do
   action :run
   not_if 'cat /usr/bin/chef-client | grep nsswitch.conf.orig'
 end
-
-include_recipe "chef_gate::_add_host_gate"
-include_recipe "chef_gate::_add_sudo_group"
