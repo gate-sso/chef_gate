@@ -26,7 +26,7 @@ cookbook_file "/etc/nsswitch.conf.orig" do
 end
 
 
-if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
+if node['platform'] == 'ubuntu'
   ruby_block 'change chef client binary' do
     block do
       file = Chef::Util::FileEdit.new("/usr/bin/chef-client")
