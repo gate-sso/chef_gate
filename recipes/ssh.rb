@@ -34,3 +34,5 @@ ruby_block 'change chef client binary' do
   action :run
   not_if 'cat /usr/bin/chef-client | grep nsswitch.conf.orig'
 end
+
+chef_gate_add_groups_to_host node['gate']['host']['groups']
