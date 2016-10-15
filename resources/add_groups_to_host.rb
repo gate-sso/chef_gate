@@ -1,4 +1,5 @@
-property :groups, String, name_property: true, required: true
+property :name, String, name_property: true
+property :groups, Array, name_property: true, required: true
 
 default_action :setup
 
@@ -13,6 +14,6 @@ action :setup do
     Net::HTTP.post_form(uri,"name" => "#{node['hostname']}", "token" => "#{node['gate']['nss']['api_key']}", "group_name" => "#{group}")
   end
 
-  chef_gate__add_groups_to_sudo 'add sudo'
+  chef_gate__add_groups_to_sudo 'add_sudo'
 
 end
