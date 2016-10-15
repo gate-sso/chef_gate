@@ -5,4 +5,4 @@ default['gate']['nss']['api_key']                         = "1234567899"
 override['authorization']['sudo']['include_sudoers_d']    = true
 override['authorization']['sudo']['passwordless']         = true
 
-default['gate']['host']['groups']                         = ['devops']
+default['gate']['host']['groups']                         = ['sysadmin']

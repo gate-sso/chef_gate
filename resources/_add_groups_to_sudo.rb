@@ -16,7 +16,7 @@ action :setup do
   response_hash = JSON.parse(res.body)
 
   if !response_hash.empty?
-    node.override['authorization']['sudo']['groups'] = (response_hash['groups'] << "devops").uniq
+    node.override['authorization']['sudo']['groups'] = (response_hash['groups'] + node['gate']['host']['groups']).uniq
   else
     node.override['authorization']['sudo']['groups'] = node['gate']['host']['groups']
   end
