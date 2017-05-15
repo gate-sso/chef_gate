@@ -9,12 +9,12 @@ action :setup do
   package ['libcurl4-openssl-dev', 'libjansson-dev', 'libyaml-dev']
 
   if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
-    binary_source = "libnss_http.so.2.0_1404"
+    binary_source = "libnss_cache.so.2.0_1404"
   elsif node['platform'] == 'ubuntu' && node['platform_version'] == '16.04'
-    binary_source = "libnss_http.so.2.0_1604"
+    binary_source = "libnss_cache.so.2.0_1604"
   end
 
-  cookbook_file '/lib/x86_64-linux-gnu/libnss_http.so.2.0' do
+  cookbook_file '/usr/lib/libnss_cache.so.2.0' do
     source binary_source
     owner 'root'
     group 'root'
@@ -50,15 +50,10 @@ action :setup do
     cookbook 'chef_gate'
   end
 
-  link '/lib/x86_64-linux-gnu/libnss_http.so' do
-      to '/lib/x86_64-linux-gnu/libnss_http.so.2.0'
+  link '/usr/lib/libnss_cache.so.2' do
+      to '/usr/lib/libnss_cache.so.2.0'
       owner 'root'
       group 'root'
   end
 
-  link '/lib/x86_64-linux-gnu/libnss_http.so.2' do
-      to '/lib/x86_64-linux-gnu/libnss_http.so.2.0'
-      owner 'root'
-      group 'root'
-  end
 end

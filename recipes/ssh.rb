@@ -38,3 +38,15 @@ end
 chef_gate_add_groups_to_host 'add groups' do
   groups node['gate']['host']['groups']
 end
+
+cookbook_file "/bin/gate-nss-cache" do
+  source "gate-nss-cache"
+  owner "root"
+  group "root"
+  mode  "0755"
+end
+
+cron 'adding cron for gate nss cache ' do
+  minute '00'
+  command '/bin/gate-nss-cache'
+end
