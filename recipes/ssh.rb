@@ -35,6 +35,10 @@ ruby_block 'change chef client binary' do
   not_if 'cat /usr/bin/chef-client | grep nsswitch.conf.orig'
 end
 
+chef_gate_add_groups_to_host 'add groups' do
+  groups node['gate']['host']['groups']
+end
+
 cookbook_file "/bin/gate-nss-cache" do
   source "gate-nss-cache"
   owner "root"
