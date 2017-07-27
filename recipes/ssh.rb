@@ -48,5 +48,8 @@ end
 
 cron 'adding cron for gate nss cache ' do
   minute '00'
-  command '/bin/gate-nss-cache'
+  command %W{
+    GATE_CONFIG_FILE="/etc/gate/nss.yml"
+    /bin/gate-nss-cache
+  }.join(' ')
 end
