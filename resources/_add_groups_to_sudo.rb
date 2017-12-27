@@ -20,6 +20,10 @@ action :setup do
   else
     node.override['authorization']['sudo']['groups'] = node['gate']['host']['groups']
   end
-  include_recipe 'sudo'
 
+  node['authorization']['sudo']['groups'].each do |item|
+    file = Chef::Util::FileEdit.new('/etc/sudoers')
+    file.insert_line_if_no_match(/%#{item} ALL=\(ALL\) NOPASSWD:ALL/, "%#{item} ALL=(ALL) NOPASSWD:ALL")
+    file.write_file
+  end
 end
