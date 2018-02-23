@@ -30,18 +30,6 @@ action :setup do
     action :create
   end
 
-  template '/etc/gate/nss.yml' do
-    source 'nss.yml.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
-    cookbook 'chef_gate'
-    variables(
-      gate_url: new_resource.gate_url,
-      api_key: new_resource.api_key
-    )
-  end
-
   template '/etc/nsswitch.conf' do
     source 'nsswitch.conf.erb'
     owner 'root'
@@ -51,9 +39,13 @@ action :setup do
   end
 
   link '/usr/lib/libnss_cache.so.2' do
-      to '/usr/lib/libnss_cache.so.2.0'
-      owner 'root'
-      group 'root'
+    to '/usr/lib/libnss_cache.so.2.0'
+    owner 'root'
+    group 'root'
   end
 
+  chef_gate_add_groups_to_host 'add groups' do
+    groups node['gate']['host']['groups']
+    gate_url new_resource.gate_url
+  end
 end
