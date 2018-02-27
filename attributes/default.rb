@@ -6,3 +6,4 @@ override['authorization']['sudo']['include_sudoers_d']    = true
 override['authorization']['sudo']['passwordless']         = true
 
 default['gate']['host']['groups']                         = ['sysadmin']
+default['gate']['sudo_group']                             = "sysadmins"
