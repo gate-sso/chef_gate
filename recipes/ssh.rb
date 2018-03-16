@@ -57,6 +57,6 @@ cron 'adding cron for gate nss cache ' do
   minute "*/#{node['gate']['nss']['cron_duration']}"
   command %W{
     /bin/bash
-    /etc/nss_cron.sh
+    /etc/gate/nss_cron.sh
   }.join(' ')
 end
