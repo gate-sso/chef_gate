@@ -42,10 +42,21 @@ cookbook_file "/bin/gate-nss-cache" do
   mode  "0755"
 end
 
+template "/etc/gate/nss_cron.sh" do
+  source "nss_cron.sh.erb"
+  owner "root"
+  group "root"
+  mode  "0755"
+  cookbook 'chef_gate'
+  variables(
+    cron_duration: node['gate']['nss']['cron_duration']
+  )
+end
+
 cron 'adding cron for gate nss cache ' do
-  minute '*/5'
+  minute "*/#{node['gate']['nss']['cron_duration']}"
   command %W{
-    GATE_CONFIG_FILE="/etc/gate/nss.yml"
-    /bin/gate-nss-cache
+    /bin/bash
+    /etc/nss_cron.sh
   }.join(' ')
 end

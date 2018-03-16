@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sleep $(($RANDOM <%= @cron_duration.to_i * 60 %> ))
+GATE_CONFIG_FILE="/etc/gate/nss.yml" /bin/gate-nss-cache
+

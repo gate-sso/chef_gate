@@ -30,5 +30,4 @@ action :setup do
     action :nothing
     supports :status => true, :start => true, :stop => true, :restart => true
   end
-
 end
