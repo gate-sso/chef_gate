@@ -18,13 +18,6 @@ chef_gate_pam 'ssh setup' do
   api_key node['gate']['nss']['api_key']
 end
 
-cookbook_file "/etc/nsswitch.conf.orig" do
-  source "nsswitch.conf.orig"
-  owner "root"
-  group "root"
-  mode  "0644"
-end
-
 ruby_block 'change chef client binary' do
   block do
     file = Chef::Util::FileEdit.new("/usr/bin/chef-client")
