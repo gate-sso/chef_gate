@@ -18,16 +18,6 @@ chef_gate_pam 'ssh setup' do
   api_key node['gate']['nss']['api_key']
 end
 
-ruby_block 'change chef client binary' do
-  block do
-    file = Chef::Util::FileEdit.new("/usr/bin/chef-client")
-    file.insert_line_after_match(/.*embedded.*$/, "require 'fileutils'\nFileUtils.cp '/etc/nsswitch.conf.orig', '/etc/nsswitch.conf'")
-    file.write_file
-  end
-  action :run
-  not_if 'cat /usr/bin/chef-client | grep nsswitch.conf.orig'
-end
-
 cookbook_file "/bin/gate-nss-cache" do
   source "gate-nss-cache"
   owner "root"
