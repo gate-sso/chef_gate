@@ -1,6 +1,6 @@
 # libnss_cache.so.2.0 BINARYGENERATION
 
-###Follow below mentioned steps to generate the required binary.
+###Follow below mentioned steps to generate the required binary on a ubuntu machine.
 1. Install dependencies
 
    `apt install make`
