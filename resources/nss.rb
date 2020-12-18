@@ -12,6 +12,8 @@ action :setup do
     binary_source = "libnss_cache.so.2.0_1404"
   elsif node['platform'] == 'ubuntu' && node['platform_version'] == '16.04'
     binary_source = "libnss_cache.so.2.0_1604"
+  elsif node['platform'] == 'ubuntu' && node['platform_version'] == '20.04'
+    binary_source = "libnss_cache.so.2.0_2004"
   end
 
   cookbook_file '/usr/lib/libnss_cache.so.2.0' do

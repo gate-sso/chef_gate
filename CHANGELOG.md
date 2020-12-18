@@ -1,5 +1,9 @@
 # gate-sso CHANGELOG
 
+## 0.4.8
+- [Vidit/Jigar] - Added libnss_cache binary for ubuntu 20.04
+- [Vidit/Jigar] - Modified nss resource to support ubuntu 20.04
+
 This file is used to list changes made in each version of the gate-sso cookbook.
 
 ## 0.1.0
