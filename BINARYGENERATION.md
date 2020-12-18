@@ -1,11 +1,5 @@
 # libnss_cache.so.2.0 BINARYGENERATION
 
-###Requirements:
-
-1. SSH into an ubuntu VM.
-   
-   **Note:** For our case we used a test VM on ubuntu 20.04 platform which we created as part of our analysis.
-
 ###Follow below mentioned steps to generate the required binary.
 1. Install dependencies
 
