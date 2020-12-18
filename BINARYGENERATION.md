@@ -25,10 +25,4 @@
 
 The `libnss_cache.so.2.0` would be created at the set path in the make file.
 
-5. Now do an `scp` to copy the binary from the remote host to the local machine.
-
-   `scp user@<remote_host>:<path in remote host> ./libnss_cache.so.2.0_2004`
-
-
-
 Use the above file to be added as binary in the repo.
