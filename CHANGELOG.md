@@ -1,13 +1,13 @@
 # gate-sso CHANGELOG
 
+## 0.4.9
+- [s-nirali](https://github.com/s-nirali) - Create nss config without overwriting existing config.
+
 ## 0.4.8
 - [Vidit/Jigar] - Added libnss_cache binary for ubuntu 20.04
 - [Vidit/Jigar] - Modified nss resource to support ubuntu 20.04
 
 This file is used to list changes made in each version of the gate-sso cookbook.
-
-## 0.4.8
-- [s-nirali](https://github.com/s-nirali) - Create nss config without overwriting existing config.
 
 ## 0.1.0
 - [your_name] - Initial release of gate-sso
