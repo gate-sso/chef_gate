@@ -32,12 +32,17 @@ action :setup do
     action :create
   end
 
-  template '/etc/nsswitch.conf' do
-    source 'nsswitch.conf.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
-    cookbook 'chef_gate'
+  bash "/etc/nsswitch.conf" do
+    code <<-EOH
+      set -x
+      nss_config='/etc/nsswitch.conf'
+      if ! grep -q '^passwd:.*\\bcache\\b' "$nss_config"; then
+          sed -i"" '/^passwd:/ s/$/ cache/' "$nss_config"
+      fi
+      if ! grep -q '^group:.*\\bcache\\b' "$nss_config"; then
+          sed -i"" '/^group:/ s/$/ cache/' "$nss_config"
+      fi
+    EOH
   end
 
   link '/usr/lib/libnss_cache.so.2' do

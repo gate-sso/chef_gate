@@ -6,6 +6,9 @@
 
 This file is used to list changes made in each version of the gate-sso cookbook.
 
+## 0.4.8
+- [s-nirali](https://github.com/s-nirali) - Create nss config without overwriting existing config.
+
 ## 0.1.0
 - [your_name] - Initial release of gate-sso
 
